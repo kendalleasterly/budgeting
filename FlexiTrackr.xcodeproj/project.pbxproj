@@ -14,6 +14,13 @@
 		C61FD21B2A3554C10001B553 /* budgetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD21A2A3554C10001B553 /* budgetingTests.swift */; };
 		C61FD2252A3554C10001B553 /* budgetingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2242A3554C10001B553 /* budgetingUITests.swift */; };
 		C61FD2272A3554C10001B553 /* budgetingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2262A3554C10001B553 /* budgetingUITestsLaunchTests.swift */; };
+		C61FD2352A3563190001B553 /* LinkKit in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD2342A3563190001B553 /* LinkKit */; };
+		C61FD2382A3569B40001B553 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD2372A3569B40001B553 /* SwiftyJSON */; };
+		C61FD23B2A3569FA0001B553 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD23A2A3569FA0001B553 /* Alamofire */; };
+		C61FD23E2A356DBD0001B553 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD23D2A356DBD0001B553 /* FirebaseAnalyticsSwift */; };
+		C61FD2402A356DBD0001B553 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD23F2A356DBD0001B553 /* FirebaseAuth */; };
+		C61FD2422A356DBD0001B553 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD2412A356DBD0001B553 /* FirebaseFirestoreSwift */; };
+		C61FD2442A35737D0001B553 /* GoogleService-Info (5).plist in Resources */ = {isa = PBXBuildFile; fileRef = C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,16 +41,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C61FD2062A3554BE0001B553 /* budgeting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgeting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FD2062A3554BE0001B553 /* FlexiTrackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiTrackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FD2092A3554BE0001B553 /* budgetingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingApp.swift; sourceTree = "<group>"; };
 		C61FD20B2A3554BE0001B553 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C61FD20D2A3554C00001B553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C61FD2102A3554C00001B553 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C61FD2162A3554C10001B553 /* budgetingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = budgetingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FD2162A3554C10001B553 /* FlexiTrackrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexiTrackrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FD21A2A3554C10001B553 /* budgetingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingTests.swift; sourceTree = "<group>"; };
-		C61FD2202A3554C10001B553 /* budgetingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = budgetingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FD2202A3554C10001B553 /* FlexiTrackrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexiTrackrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FD2242A3554C10001B553 /* budgetingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingUITests.swift; sourceTree = "<group>"; };
 		C61FD2262A3554C10001B553 /* budgetingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (5).plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61FD23E2A356DBD0001B553 /* FirebaseAnalyticsSwift in Frameworks */,
+				C61FD2402A356DBD0001B553 /* FirebaseAuth in Frameworks */,
+				C61FD23B2A3569FA0001B553 /* Alamofire in Frameworks */,
+				C61FD2382A3569B40001B553 /* SwiftyJSON in Frameworks */,
+				C61FD2352A3563190001B553 /* LinkKit in Frameworks */,
+				C61FD2422A356DBD0001B553 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +98,9 @@
 		C61FD2072A3554BE0001B553 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C61FD2062A3554BE0001B553 /* budgeting.app */,
-				C61FD2162A3554C10001B553 /* budgetingTests.xctest */,
-				C61FD2202A3554C10001B553 /* budgetingUITests.xctest */,
+				C61FD2062A3554BE0001B553 /* FlexiTrackr.app */,
+				C61FD2162A3554C10001B553 /* FlexiTrackrTests.xctest */,
+				C61FD2202A3554C10001B553 /* FlexiTrackrUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +108,7 @@
 		C61FD2082A3554BE0001B553 /* budgeting */ = {
 			isa = PBXGroup;
 			children = (
+				C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */,
 				C61FD2092A3554BE0001B553 /* budgetingApp.swift */,
 				C61FD20B2A3554BE0001B553 /* ContentView.swift */,
 				C61FD20D2A3554C00001B553 /* Assets.xcassets */,
@@ -130,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C61FD2052A3554BE0001B553 /* budgeting */ = {
+		C61FD2052A3554BE0001B553 /* FlexiTrackr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C61FD22A2A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgeting" */;
+			buildConfigurationList = C61FD22A2A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackr" */;
 			buildPhases = (
 				C61FD2022A3554BE0001B553 /* Sources */,
 				C61FD2032A3554BE0001B553 /* Frameworks */,
@@ -142,14 +157,22 @@
 			);
 			dependencies = (
 			);
-			name = budgeting;
+			name = FlexiTrackr;
+			packageProductDependencies = (
+				C61FD2342A3563190001B553 /* LinkKit */,
+				C61FD2372A3569B40001B553 /* SwiftyJSON */,
+				C61FD23A2A3569FA0001B553 /* Alamofire */,
+				C61FD23D2A356DBD0001B553 /* FirebaseAnalyticsSwift */,
+				C61FD23F2A356DBD0001B553 /* FirebaseAuth */,
+				C61FD2412A356DBD0001B553 /* FirebaseFirestoreSwift */,
+			);
 			productName = budgeting;
-			productReference = C61FD2062A3554BE0001B553 /* budgeting.app */;
+			productReference = C61FD2062A3554BE0001B553 /* FlexiTrackr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C61FD2152A3554C10001B553 /* budgetingTests */ = {
+		C61FD2152A3554C10001B553 /* FlexiTrackrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C61FD22D2A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgetingTests" */;
+			buildConfigurationList = C61FD22D2A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackrTests" */;
 			buildPhases = (
 				C61FD2122A3554C10001B553 /* Sources */,
 				C61FD2132A3554C10001B553 /* Frameworks */,
@@ -160,14 +183,14 @@
 			dependencies = (
 				C61FD2182A3554C10001B553 /* PBXTargetDependency */,
 			);
-			name = budgetingTests;
+			name = FlexiTrackrTests;
 			productName = budgetingTests;
-			productReference = C61FD2162A3554C10001B553 /* budgetingTests.xctest */;
+			productReference = C61FD2162A3554C10001B553 /* FlexiTrackrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C61FD21F2A3554C10001B553 /* budgetingUITests */ = {
+		C61FD21F2A3554C10001B553 /* FlexiTrackrUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C61FD2302A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgetingUITests" */;
+			buildConfigurationList = C61FD2302A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackrUITests" */;
 			buildPhases = (
 				C61FD21C2A3554C10001B553 /* Sources */,
 				C61FD21D2A3554C10001B553 /* Frameworks */,
@@ -178,9 +201,9 @@
 			dependencies = (
 				C61FD2222A3554C10001B553 /* PBXTargetDependency */,
 			);
-			name = budgetingUITests;
+			name = FlexiTrackrUITests;
 			productName = budgetingUITests;
-			productReference = C61FD2202A3554C10001B553 /* budgetingUITests.xctest */;
+			productReference = C61FD2202A3554C10001B553 /* FlexiTrackrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +229,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C61FD2012A3554BE0001B553 /* Build configuration list for PBXProject "budgeting" */;
+			buildConfigurationList = C61FD2012A3554BE0001B553 /* Build configuration list for PBXProject "FlexiTrackr" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -215,13 +238,19 @@
 				Base,
 			);
 			mainGroup = C61FD1FD2A3554BE0001B553;
+			packageReferences = (
+				C61FD2332A3563190001B553 /* XCRemoteSwiftPackageReference "plaid-link-ios" */,
+				C61FD2362A3569B40001B553 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C61FD2392A3569FA0001B553 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C61FD23C2A356DBC0001B553 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = C61FD2072A3554BE0001B553 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C61FD2052A3554BE0001B553 /* budgeting */,
-				C61FD2152A3554C10001B553 /* budgetingTests */,
-				C61FD21F2A3554C10001B553 /* budgetingUITests */,
+				C61FD2052A3554BE0001B553 /* FlexiTrackr */,
+				C61FD2152A3554C10001B553 /* FlexiTrackrTests */,
+				C61FD21F2A3554C10001B553 /* FlexiTrackrUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -231,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61FD2442A35737D0001B553 /* GoogleService-Info (5).plist in Resources */,
 				C61FD2112A3554C00001B553 /* Preview Assets.xcassets in Resources */,
 				C61FD20E2A3554C00001B553 /* Assets.xcassets in Resources */,
 			);
@@ -284,12 +314,12 @@
 /* Begin PBXTargetDependency section */
 		C61FD2182A3554C10001B553 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C61FD2052A3554BE0001B553 /* budgeting */;
+			target = C61FD2052A3554BE0001B553 /* FlexiTrackr */;
 			targetProxy = C61FD2172A3554C10001B553 /* PBXContainerItemProxy */;
 		};
 		C61FD2222A3554C10001B553 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C61FD2052A3554BE0001B553 /* budgeting */;
+			target = C61FD2052A3554BE0001B553 /* FlexiTrackr */;
 			targetProxy = C61FD2212A3554C10001B553 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -430,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.easterlyconsulting.budgeting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.easterlyconsulting.flexitrackr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -459,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.easterlyconsulting.budgeting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.easterlyconsulting.flexitrackr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -483,7 +513,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/budgeting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/budgeting";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlexiTrackr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlexiTrackr";
 			};
 			name = Debug;
 		};
@@ -503,7 +533,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/budgeting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/budgeting";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlexiTrackr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlexiTrackr";
 			};
 			name = Release;
 		};
@@ -546,7 +576,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C61FD2012A3554BE0001B553 /* Build configuration list for PBXProject "budgeting" */ = {
+		C61FD2012A3554BE0001B553 /* Build configuration list for PBXProject "FlexiTrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61FD2282A3554C10001B553 /* Debug */,
@@ -555,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C61FD22A2A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgeting" */ = {
+		C61FD22A2A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61FD22B2A3554C10001B553 /* Debug */,
@@ -564,7 +594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C61FD22D2A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgetingTests" */ = {
+		C61FD22D2A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61FD22E2A3554C10001B553 /* Debug */,
@@ -573,7 +603,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C61FD2302A3554C10001B553 /* Build configuration list for PBXNativeTarget "budgetingUITests" */ = {
+		C61FD2302A3554C10001B553 /* Build configuration list for PBXNativeTarget "FlexiTrackrUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61FD2312A3554C10001B553 /* Debug */,
@@ -583,6 +613,74 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C61FD2332A3563190001B553 /* XCRemoteSwiftPackageReference "plaid-link-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/plaid/plaid-link-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		C61FD2362A3569B40001B553 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C61FD2392A3569FA0001B553 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C61FD23C2A356DBC0001B553 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C61FD2342A3563190001B553 /* LinkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD2332A3563190001B553 /* XCRemoteSwiftPackageReference "plaid-link-ios" */;
+			productName = LinkKit;
+		};
+		C61FD2372A3569B40001B553 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD2362A3569B40001B553 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		C61FD23A2A3569FA0001B553 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD2392A3569FA0001B553 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C61FD23D2A356DBD0001B553 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD23C2A356DBC0001B553 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		C61FD23F2A356DBD0001B553 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD23C2A356DBC0001B553 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C61FD2412A356DBD0001B553 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C61FD23C2A356DBC0001B553 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C61FD1FE2A3554BE0001B553 /* Project object */;
 }
