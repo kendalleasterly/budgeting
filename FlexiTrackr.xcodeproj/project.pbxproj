@@ -20,7 +20,9 @@
 		C61FD23E2A356DBD0001B553 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD23D2A356DBD0001B553 /* FirebaseAnalyticsSwift */; };
 		C61FD2402A356DBD0001B553 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD23F2A356DBD0001B553 /* FirebaseAuth */; };
 		C61FD2422A356DBD0001B553 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C61FD2412A356DBD0001B553 /* FirebaseFirestoreSwift */; };
-		C61FD2442A35737D0001B553 /* GoogleService-Info (5).plist in Resources */ = {isa = PBXBuildFile; fileRef = C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */; };
+		C61FD2442A35737D0001B553 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C61FD2432A35737D0001B553 /* GoogleService-Info.plist */; };
+		C61FD2462A3576030001B553 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2452A3576030001B553 /* TransactionView.swift */; };
+		C61FD2482A35761E0001B553 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2472A35761E0001B553 /* TransactionModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +53,9 @@
 		C61FD2202A3554C10001B553 /* FlexiTrackrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexiTrackrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FD2242A3554C10001B553 /* budgetingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingUITests.swift; sourceTree = "<group>"; };
 		C61FD2262A3554C10001B553 /* budgetingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetingUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (5).plist"; sourceTree = "<group>"; };
+		C61FD2432A35737D0001B553 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C61FD2452A3576030001B553 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		C61FD2472A35761E0001B553 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +112,11 @@
 		C61FD2082A3554BE0001B553 /* budgeting */ = {
 			isa = PBXGroup;
 			children = (
-				C61FD2432A35737D0001B553 /* GoogleService-Info (5).plist */,
+				C61FD2432A35737D0001B553 /* GoogleService-Info.plist */,
 				C61FD2092A3554BE0001B553 /* budgetingApp.swift */,
 				C61FD20B2A3554BE0001B553 /* ContentView.swift */,
+				C61FD2452A3576030001B553 /* TransactionView.swift */,
+				C61FD2472A35761E0001B553 /* TransactionModel.swift */,
 				C61FD20D2A3554C00001B553 /* Assets.xcassets */,
 				C61FD20F2A3554C00001B553 /* Preview Content */,
 			);
@@ -260,7 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C61FD2442A35737D0001B553 /* GoogleService-Info (5).plist in Resources */,
+				C61FD2442A35737D0001B553 /* GoogleService-Info.plist in Resources */,
 				C61FD2112A3554C00001B553 /* Preview Assets.xcassets in Resources */,
 				C61FD20E2A3554C00001B553 /* Assets.xcassets in Resources */,
 			);
@@ -287,8 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61FD2482A35761E0001B553 /* TransactionModel.swift in Sources */,
 				C61FD20C2A3554BE0001B553 /* ContentView.swift in Sources */,
 				C61FD20A2A3554BE0001B553 /* budgetingApp.swift in Sources */,
+				C61FD2462A3576030001B553 /* TransactionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
