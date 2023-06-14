@@ -51,10 +51,13 @@ class TransactionModel: ObservableObject {
                         let transactionObject = Transaction(name: name, amount: amount, id: id, date: date, city: "", region: "", pending: isPending, category: category)
                         
                         txns.append(transactionObject)
+                        
+                        print(name + " " + category)
+                        
                     }
                     
                     self.transactions = txns
-                    debugPrint(self.transactions)
+                    
                 
                 case .failure(let error):
                     print("error")
@@ -77,5 +80,12 @@ struct Transaction: Identifiable {
     var region: String
     var pending: Bool
     var category: String
+    
+}
+
+enum Category {
+    case transportation
+    case food
+    case payment
     
 }

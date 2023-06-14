@@ -23,6 +23,8 @@
 		C61FD2442A35737D0001B553 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C61FD2432A35737D0001B553 /* GoogleService-Info.plist */; };
 		C61FD2462A3576030001B553 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2452A3576030001B553 /* TransactionView.swift */; };
 		C61FD2482A35761E0001B553 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FD2472A35761E0001B553 /* TransactionModel.swift */; };
+		C647E06D2A39490900CA94E6 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647E06C2A39490900CA94E6 /* View+Extension.swift */; };
+		C647E0702A395E8900CA94E6 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647E06F2A395E8900CA94E6 /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		C61FD2432A35737D0001B553 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C61FD2452A3576030001B553 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		C61FD2472A35761E0001B553 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		C647E06C2A39490900CA94E6 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		C647E06F2A395E8900CA94E6 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				C61FD20B2A3554BE0001B553 /* ContentView.swift */,
 				C61FD2452A3576030001B553 /* TransactionView.swift */,
 				C61FD2472A35761E0001B553 /* TransactionModel.swift */,
+				C647E06E2A395E6700CA94E6 /* Extensions */,
 				C61FD20D2A3554C00001B553 /* Assets.xcassets */,
 				C61FD20F2A3554C00001B553 /* Preview Content */,
 			);
@@ -146,6 +151,15 @@
 				C61FD2262A3554C10001B553 /* budgetingUITestsLaunchTests.swift */,
 			);
 			path = budgetingUITests;
+			sourceTree = "<group>";
+		};
+		C647E06E2A395E6700CA94E6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C647E06C2A39490900CA94E6 /* View+Extension.swift */,
+				C647E06F2A395E8900CA94E6 /* Color+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +308,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C61FD2482A35761E0001B553 /* TransactionModel.swift in Sources */,
+				C647E0702A395E8900CA94E6 /* Color+Extension.swift in Sources */,
 				C61FD20C2A3554BE0001B553 /* ContentView.swift in Sources */,
+				C647E06D2A39490900CA94E6 /* View+Extension.swift in Sources */,
 				C61FD20A2A3554BE0001B553 /* budgetingApp.swift in Sources */,
 				C61FD2462A3576030001B553 /* TransactionView.swift in Sources */,
 			);
