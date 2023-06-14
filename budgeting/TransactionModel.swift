@@ -11,7 +11,8 @@ import Alamofire
 
 class TransactionModel: ObservableObject {
     
-    @Published var transactions = [Transaction]()
+    @Published var transactions: [String: [Transaction]]?
+    let catogories = ["transportation":"Travel", "food":"Food and Drink", "shopping": "Payment"]
     
     func getRecentTransactions() {
         
@@ -52,22 +53,41 @@ class TransactionModel: ObservableObject {
                         
                         txns.append(transactionObject)
                         
-                        print(name + " " + category)
+                        print(date.description + " " + category + " " + name)
                         
                     }
                     
-                    self.transactions = txns
+                self.transactions = self.sortTransactionsByCategory(txns: txns)
+                debugPrint(self.transactions)
                     
                 
                 case .failure(let error):
                     print("error")
                     debugPrint(error)
             }
-            
-            
-            
         }
         
+    }
+    
+    func sortTransactionsByCategory(txns: [Transaction]) -> [String:[Transaction]] {
+        
+        var txnsByCategory = [String:[Transaction]]()
+        
+        catogories.forEach { (key: String, searchTerm: String) in
+    
+            var txnArray = [Transaction]()
+            
+            for txn in txns {
+                
+                if txn.category.starts(with: searchTerm) {
+                    txnArray.append(txn)
+                }
+            }
+            
+            txnsByCategory[key] = txnArray
+        }
+        
+        return txnsByCategory
     }
 }
 
@@ -80,12 +100,5 @@ struct Transaction: Identifiable {
     var region: String
     var pending: Bool
     var category: String
-    
-}
-
-enum Category {
-    case transportation
-    case food
-    case payment
     
 }

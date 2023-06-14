@@ -9,11 +9,11 @@ import SwiftUI
 
 struct TransactionView: View {
     
-    @ObservedObject var transactionModel = TransactionModel()
+    @ObservedObject var model = TransactionModel()
     @State var biggestSize: CGSize = .zero
     @State var selectedCategory = "transportation"
     
-    let categoriesDict = [
+    let categoriesDict = [//comes from firebase, key is used for sorting by category
         "transportation":[
             "emoji": "🚗",
             "name": "Transportation",
@@ -39,7 +39,7 @@ struct TransactionView: View {
                             categoryDict: categoriesDict[categoryKey]!,
                             categoryKey: categoryKey,
                             biggestSize: $biggestSize,
-                            selectedCategory: $selectedCategory
+                            selectedCategory: $selectedCategory, model: model
                         )
                     }
                 }.padding(16)
@@ -48,14 +48,23 @@ struct TransactionView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack {
-                    ForEach(getWeeks(), id:\.self.timeIntervalSince1970) {week in
-                        WeekGroupSubView(weekTitle: "", sunday: week)
+                    
+                    if let txns = model.transactions {
+                        ForEach(getWeeks(), id:\.self.timeIntervalSince1970) {week in
+                            WeekGroupSubView(
+                                sunday: week,
+                                txns: txns[selectedCategory]!
+                            )
+                        }
                     }
+                    
                 }
-                
             }
             
             Spacer()
+        }.onAppear {
+            
+            model.getRecentTransactions()
         }
     }
 }
@@ -67,6 +76,7 @@ struct CategorySubView: View {
     var categoryKey: String
     @Binding var biggestSize: CGSize
     @Binding var selectedCategory: String
+    var model: TransactionModel
     @State var currentSize: CGSize = .zero
     
     var body: some View {
@@ -104,44 +114,83 @@ struct CategorySubView: View {
 
 struct WeekGroupSubView: View {
     
-    var weekTitle: String
     var sunday: Date
+    var txns: [Transaction]
+    let calendar = Calendar.current
     
     var body: some View {
-        Text(String(sunday.description))
+        
+        VStack(spacing: 20) {
+            
+            HStack {
+                Text(getWeekDescription(sunday))
+                Spacer()
+                HStack(spacing: 0) {
+                    Text("$240.98")
+                        .foregroundColor(.green)
+                        .fontWeight(.medium)
+                    
+                    Text("/190.98")
+                        .foregroundColor(Color(uiColor: UIColor.secondaryLabel))
+                        .font(.caption)
+                }
+                
+            }
+            
+            VStack(spacing: 16) {
+                ForEach(getTxnsFromCurrentWeek()) { txn in
+                    Text(txn.id.suffix(4) + ":" + txn.name)
+                }
+            }
+            
+        }.carded()
+            .padding(.horizontal, 16)
+    }
+    
+    func getTxnsFromCurrentWeek() -> [Transaction] {
+        let endOfWeek = calendar.date(byAdding: .day, value: 7, to: sunday)!
+        
+        var txnsInCurrentWeek = [Transaction]()
+        
+        txns.forEach { txn in
+            if (txn.date > sunday && txn.date < endOfWeek) {
+                txnsInCurrentWeek.append(txn)
+            }
+        }
+        
+        return txnsInCurrentWeek
+    }
+    
+    func getWeekDescription(_ week: Date) -> String {
+        
+        let differenceComponents = calendar.dateComponents([.day], from: week, to: Date())
+        
+        if let days = differenceComponents.day {
+            if days < 7 {
+                return "This Week"
+            } else if days < 14 {
+                return "Last Week"
+            }
+        }
+        
+        let nextSunday = calendar.date(byAdding: .day, value: 7, to: sunday)!
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/d"
+        
+        return formatter.string(from: sunday) + " - " + formatter.string(from: nextSunday)
+        
     }
 }
 
 extension TransactionView {
+    
     func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM dd"
+        
+        formatter.dateFormat = "M/d"
         
         return formatter.string(from: date)
-    }
-    
-    func getTxnsIn(_ category: Category) -> [Transaction] {
-        
-        var categoryString = ""
-        var txnArray = [Transaction]()
-        
-        switch category {
-        case .food:
-            categoryString = "Food and Drink"
-        case .payment:
-            categoryString = "Payment"
-        case .transportation:
-            categoryString = "Travel"
-        }
-        
-        for txn in transactionModel.transactions {
-            
-            if txn.category.starts(with: categoryString) {
-                txnArray.append(txn)
-            }
-        }
-        
-        return txnArray
     }
     
     func getFinancialRangeFor(_ month: Date) -> (Date, Date) {
@@ -171,11 +220,12 @@ extension TransactionView {
         return (startOfRange, endOfRange)
         
     }
-
+    
     func getWeeks() -> [Date] {
         
         let calendar = Calendar.current
-        let today = Date()
+        let today = calendar.date(byAdding: .day, value: -15, to: Date())!
+        var weeks = [Date]()
         
         let (startOfRange, endOfRange) = getFinancialRangeFor(today)
         
@@ -185,15 +235,19 @@ extension TransactionView {
             
             let (previousStart, previousEnd) = getFinancialRangeFor(lastMonthDate)
             
-            return loadAllWeeksInRange(previousStart, previousEnd)
+            weeks = loadAllWeeksInRange(previousStart, previousEnd)
             
         } else if (endOfRange.timeIntervalSince1970 < today.timeIntervalSince1970) {
             //we are after the current financial month, get just this week
-            return [endOfRange]
+            weeks = [endOfRange]
             
         } else {
-//            we are within the current financial month
-            return loadAllWeeksInRange(startOfRange, endOfRange)
+            //            we are within the current financial month
+            weeks = loadAllWeeksInRange(startOfRange, endOfRange)
+        }
+        
+        return weeks.sorted {date1, date2 in
+            return date1  > date2
         }
     }
     
