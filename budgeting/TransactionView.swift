@@ -47,13 +47,15 @@ struct TransactionView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 
-                
+                VStack {
+                    ForEach(getWeeks(), id:\.self.timeIntervalSince1970) {week in
+                        WeekGroupSubView(weekTitle: "", sunday: week)
+                    }
+                }
                 
             }
             
             Spacer()
-        }.onAppear {
-            getWeeks()
         }
     }
 }
@@ -69,7 +71,7 @@ struct CategorySubView: View {
     
     var body: some View {
         Button {
-            
+            selectedCategory = categoryKey
         } label: {
             VStack(alignment: .leading, spacing: 16) {
                 Text(categoryDict["emoji"]!)
@@ -77,7 +79,7 @@ struct CategorySubView: View {
                     .fontWeight(.regular)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(categoryDict["name"]!)
+                    Text(categoryDict["name"]!.prefix(16))
                         .font(.body)
                         .fontWeight(.medium)
                         .foregroundColor(selectedCategory == categoryKey ? .white : .primaryLabel)
@@ -87,25 +89,26 @@ struct CategorySubView: View {
                         .foregroundColor(selectedCategory == categoryKey ? .white : Color(uiColor: UIColor.tertiaryLabel))
                 }
                 
-            }.saveSize(in: $currentSize)
+            }.fixedSize().saveSize(in: $currentSize)
                 .onAppear {
                     if (currentSize.width > biggestSize.width) {
                         biggestSize = currentSize
                     }
-                }.fixedSize()
-                .frame(width: biggestSize.width, height: biggestSize.width, alignment: .leading)
+                }
+                .frame(width: max(biggestSize.width, currentSize.height), height: max(biggestSize.width, currentSize.height), alignment: .leading)
                 .carded(bgColor: selectedCategory == categoryKey ? .appColor : .white)
             
         }
     }
 }
 
-struct WeekGroupSubView {
+struct WeekGroupSubView: View {
     
     var weekTitle: String
+    var sunday: Date
     
     var body: some View {
-        Text(weekTitle)
+        Text(String(sunday.description))
     }
 }
 
@@ -141,29 +144,75 @@ extension TransactionView {
         return txnArray
     }
     
-//    func getWeeks() -> [String] {
-    func getWeeks() -> () {
-        
+    func getFinancialRangeFor(_ month: Date) -> (Date, Date) {
         let calendar = Calendar.current
         
-        let startOfMonthComponents = calendar.dateComponents([.year, .month], from: Date())
+        let startOfMonthComponents = calendar.dateComponents([.year, .month], from: month)
         let startOfMonth = calendar.date(from: startOfMonthComponents)!
         
         let startOfMonthWeekday = calendar.component(.weekday, from: startOfMonth)
         
-        var currentSunday = calendar.date(byAdding: .day, value: -(startOfMonthWeekday - 1), to: startOfMonth)!
+        var startOfRange = calendar.date(byAdding: .day, value: -(startOfMonthWeekday - 1), to: startOfMonth)! //assumes first week is in the majority until proven otherwise
         
-        if (startOfMonthWeekday > 4) {
-            currentSunday = calendar.date(byAdding: .day, value: 7, to: currentSunday)!
+        if (startOfMonthWeekday > 4) { //the first week is in the minority
+            
+            startOfRange = calendar.date(byAdding: .day, value: 7, to: startOfRange)!
         }
         
-        var weekDescriptions = [String]()
+        let endOfMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth)!
+        let endOfMonthWeekday = calendar.component(.weekday, from: endOfMonth)
         
-        while (currentSunday.timeIntervalSince1970 <= Date().timeIntervalSince1970) {
-            let currentWeekOfMonth = calendar.component(.weekOfMonth, from: Date())
-            print(currentWeekOfMonth)
-        currentSunday = calendar.date(byAdding: .day, value: 7, to: currentSunday)!n
+        var endOfRange = calendar.date(byAdding: .day, value: (7 - endOfMonthWeekday) + 1, to: endOfMonth)!
+        
+        if (endOfMonthWeekday <= 3 ) {
+            endOfRange = calendar.date(byAdding: .day, value: -7, to: endOfRange)!
         }
+        
+        return (startOfRange, endOfRange)
+        
+    }
+
+    func getWeeks() -> [Date] {
+        
+        let calendar = Calendar.current
+        let today = Date()
+        
+        let (startOfRange, endOfRange) = getFinancialRangeFor(today)
+        
+        if (startOfRange.timeIntervalSince1970 > today.timeIntervalSince1970) {
+            //we are before the current financial month
+            let lastMonthDate = calendar.date(byAdding: .month, value: -1, to: today)!
+            
+            let (previousStart, previousEnd) = getFinancialRangeFor(lastMonthDate)
+            
+            return loadAllWeeksInRange(previousStart, previousEnd)
+            
+        } else if (endOfRange.timeIntervalSince1970 < today.timeIntervalSince1970) {
+            //we are after the current financial month, get just this week
+            return [endOfRange]
+            
+        } else {
+//            we are within the current financial month
+            return loadAllWeeksInRange(startOfRange, endOfRange)
+        }
+    }
+    
+    func loadAllWeeksInRange(_ startDate: Date, _ endDate: Date) -> [Date] {
+        //each date passed out of this function is the sunday of the week. it represents the entire week.
+        
+        let calendar = Calendar.current
+        
+        var sundayIndex = startDate
+        
+        var weeks = [Date]()
+        
+        while (sundayIndex.timeIntervalSince1970 < Date().timeIntervalSince1970) {
+            weeks.append(sundayIndex)
+            sundayIndex = calendar.date(byAdding: .day, value: 7, to: sundayIndex)!
+            
+        }
+        
+        return weeks
         
     }
 }

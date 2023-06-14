@@ -30,6 +30,7 @@ struct CardedModifier: ViewModifier {
             .padding(.horizontal, px)
             .padding(.vertical, py)
             .background(bgColor)
+            .fixedSize()
             .cornerRadius(16.0)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05999999965889559)), radius:4, x:0, y:2)
     }
