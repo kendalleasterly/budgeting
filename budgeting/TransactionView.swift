@@ -12,20 +12,21 @@ struct TransactionView: View {
     @ObservedObject var model = TransactionModel()
     @State var biggestSize: CGSize = .zero
     @State var selectedCategory = "transportation"
+    let calendar = Calendar.current
     
-    let categoriesDict = [//comes from firebase, key is used for sorting by category
+    @State var categoriesDict: [String:[String:Any]] = [//comes from firebase, key is used for sorting by category
         "transportation":[
             "emoji": "🚗",
             "name": "Transportation",
-            "amount_spent": "$120.23"],
-        "shopping":[
-            "emoji": "🛒",
-            "name": "Shopping",
-            "amount_spent": "$253.67"],
+            "amount_spent": 120.23],
+        "payment":[
+            "emoji": "💸",
+            "name": "Payment",
+            "amount_spent": 253.67],
         "food":[
             "emoji": "🍟",
             "name": "Food",
-            "amount_spent": "$87.35"]
+            "amount_spent": 87.35]
     ]
     
     var body: some View {
@@ -53,137 +54,47 @@ struct TransactionView: View {
                         ForEach(getWeeks(), id:\.self.timeIntervalSince1970) {week in
                             WeekGroupSubView(
                                 sunday: week,
-                                txns: txns[selectedCategory]!
+                                allTxns: txns[selectedCategory]!
                             )
                         }
                     }
                     
                 }
             }
-            
-            Spacer()
         }.onAppear {
             
-            model.getRecentTransactions()
-        }
-    }
-}
-
-
-struct CategorySubView: View {
-    
-    var categoryDict: [String: String]
-    var categoryKey: String
-    @Binding var biggestSize: CGSize
-    @Binding var selectedCategory: String
-    var model: TransactionModel
-    @State var currentSize: CGSize = .zero
-    
-    var body: some View {
-        Button {
-            selectedCategory = categoryKey
-        } label: {
-            VStack(alignment: .leading, spacing: 16) {
-                Text(categoryDict["emoji"]!)
-                    .font(.largeTitle)
-                    .fontWeight(.regular)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(categoryDict["name"]!.prefix(16))
-                        .font(.body)
-                        .fontWeight(.medium)
-                        .foregroundColor(selectedCategory == categoryKey ? .white : .primaryLabel)
-                    
-                    Text(categoryDict["amount_spent"]!)
-                        .font(.callout)
-                        .foregroundColor(selectedCategory == categoryKey ? .white : Color(uiColor: UIColor.tertiaryLabel))
-                }
-                
-            }.fixedSize().saveSize(in: $currentSize)
-                .onAppear {
-                    if (currentSize.width > biggestSize.width) {
-                        biggestSize = currentSize
-                    }
-                }
-                .frame(width: max(biggestSize.width, currentSize.height), height: max(biggestSize.width, currentSize.height), alignment: .leading)
-                .carded(bgColor: selectedCategory == categoryKey ? .appColor : .white)
-            
-        }
-    }
-}
-
-struct WeekGroupSubView: View {
-    
-    var sunday: Date
-    var txns: [Transaction]
-    let calendar = Calendar.current
-    
-    var body: some View {
-        
-        VStack(spacing: 20) {
-            
-            HStack {
-                Text(getWeekDescription(sunday))
-                Spacer()
-                HStack(spacing: 0) {
-                    Text("$240.98")
-                        .foregroundColor(.green)
-                        .fontWeight(.medium)
-                    
-                    Text("/190.98")
-                        .foregroundColor(Color(uiColor: UIColor.secondaryLabel))
-                        .font(.caption)
-                }
-                
-            }
-            
-            VStack(spacing: 16) {
-                ForEach(getTxnsFromCurrentWeek()) { txn in
-                    Text(txn.id.suffix(4) + ":" + txn.name)
-                }
-            }
-            
-        }.carded()
-            .padding(.horizontal, 16)
-    }
-    
-    func getTxnsFromCurrentWeek() -> [Transaction] {
-        let endOfWeek = calendar.date(byAdding: .day, value: 7, to: sunday)!
-        
-        var txnsInCurrentWeek = [Transaction]()
-        
-        txns.forEach { txn in
-            if (txn.date > sunday && txn.date < endOfWeek) {
-                txnsInCurrentWeek.append(txn)
+            model.getRecentTransactions {
+                calculateTotalSpentForEach()
             }
         }
-        
-        return txnsInCurrentWeek
-    }
-    
-    func getWeekDescription(_ week: Date) -> String {
-        
-        let differenceComponents = calendar.dateComponents([.day], from: week, to: Date())
-        
-        if let days = differenceComponents.day {
-            if days < 7 {
-                return "This Week"
-            } else if days < 14 {
-                return "Last Week"
-            }
-        }
-        
-        let nextSunday = calendar.date(byAdding: .day, value: 7, to: sunday)!
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M/d"
-        
-        return formatter.string(from: sunday) + " - " + formatter.string(from: nextSunday)
-        
     }
 }
 
 extension TransactionView {
+    
+    func calculateTotalSpentForEach() -> Void {
+        
+        let today = calendar.date(byAdding: .day, value: -15, to: Date())!
+        let (startDate, _) = getFinancialRangeFor(today)
+        print(startDate)
+        
+        model.transactions?.forEach({ (key: String, txns: [Transaction]) in
+            
+            var total:Float = 0
+            
+            txns.forEach { txn in
+                
+                if (txn.date > startDate && txn.date < Date()) {
+                    total+=txn.amount
+                }
+            }
+            
+            if var txnDict = categoriesDict[key] {
+                txnDict["amount_spent"] = round(total * 100) / 100
+                categoriesDict[key]! = txnDict
+            }
+        })
+    }
     
     func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
@@ -223,7 +134,6 @@ extension TransactionView {
     
     func getWeeks() -> [Date] {
         
-        let calendar = Calendar.current
         let today = calendar.date(byAdding: .day, value: -15, to: Date())!
         var weeks = [Date]()
         
