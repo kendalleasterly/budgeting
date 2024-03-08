@@ -18,15 +18,15 @@ struct TransactionView: View {
         "transportation":[
             "emoji": "🚗",
             "name": "Transportation",
-            "amount_spent": 120.23],
+            "amount_spent": 0],
         "payment":[
             "emoji": "💸",
             "name": "Payment",
-            "amount_spent": 253.67],
+            "amount_spent": 0],
         "food":[
             "emoji": "🍟",
             "name": "Food",
-            "amount_spent": 87.35]
+            "amount_spent": 0]
     ]
     
     var body: some View {
@@ -58,7 +58,6 @@ struct TransactionView: View {
                             )
                         }
                     }
-                    
                 }
             }
         }.onAppear {
@@ -76,7 +75,6 @@ extension TransactionView {
         
         let today = calendar.date(byAdding: .day, value: -15, to: Date())!
         let (startDate, _) = getFinancialRangeFor(today)
-        print(startDate)
         
         model.transactions?.forEach({ (key: String, txns: [Transaction]) in
             

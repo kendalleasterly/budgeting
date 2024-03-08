@@ -122,7 +122,7 @@ struct WeekGroupSubView: View {
             }
         }
         
-        let nextSunday = calendar.date(byAdding: .day, value: 7, to: sunday)!
+        let nextSunday = calendar.date(byAdding: .day, value: 6, to: sunday)!
         
         let formatter = DateFormatter()
         formatter.dateFormat = "M/d"

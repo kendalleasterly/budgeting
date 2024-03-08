@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func carded(px: CGFloat = 16, py: CGFloat = 16, bgColor: Color = .white, customShadow: Bool = false) -> some View {
+    func carded(px: CGFloat = 16, py: CGFloat = 16, bgColor: Color = .cardedBackground, customShadow: Bool = false) -> some View {
         modifier(CardedModifier(px: px, py: py, bgColor: bgColor, customShadow: customShadow))
     }
     

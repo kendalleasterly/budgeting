@@ -56,8 +56,6 @@ class TransactionModel: ObservableObject {
                     
                     txns.append(transactionObject)
                     
-                    print(date.description + String(amount) + " " + category + " " + name)
-                    
                 }
                 
             self.transactions = self.sortTransactionsByCategory(txns: txns)

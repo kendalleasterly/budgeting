@@ -28,5 +28,12 @@ extension Color {
         Color(uiColor: UIColor.secondarySystemBackground)
     }
     
+    public static var cardedBackground: Color {
+        
+        @Environment(\.colorScheme) var colorScheme
+        
+        return ((colorScheme == .light) ? Color.white : Color(uiColor: UIColor.secondarySystemBackground))
+    }
+    
 }
 
